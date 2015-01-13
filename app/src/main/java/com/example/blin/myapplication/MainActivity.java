@@ -2,6 +2,7 @@ package com.example.blin.myapplication;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.InputType;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 
 //http://www.oschina.net/question/54100_32486
 
-
+//http://www.cnblogs.com/feisky/archive/2010/01/16/1649081.html
 public class MainActivity extends ActionBarActivity {
     private EditText InputStr;
     protected void dialog() {
@@ -60,12 +61,25 @@ public class MainActivity extends ActionBarActivity {
                  .setNegativeButton("取消", null).show();
     }
 
+    void StartAct(){
+        Intent it = new Intent(MainActivity.this, ImgView.class);
+        startActivity(it);
+    }
+    void StartActPass(){
+        Intent it = new Intent(MainActivity.this, PassInfo.class);
+        Bundle bundle=new Bundle();
+        bundle.putString("name", "This is from MainActivity!");
+        it.putExtras(bundle);       // it.putExtra(“test”, "shuju”);
+        startActivity(it);            // startActivityForResult(it,REQUEST_CODE);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button buttonClick = (Button)findViewById(R.id.DiaBt);
         Button InputClick = (Button)findViewById(R.id.btInput);
+        Button InputClick1 = (Button)findViewById(R.id.BT2);
+        Button InputClick2 = (Button)findViewById(R.id.BT3);
         buttonClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +91,20 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 InputDialog();
+            }
+
+        });
+        InputClick1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StartAct();
+            }
+
+        });
+        InputClick2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StartActPass();
             }
 
         });

@@ -37,4 +37,21 @@
         android:hint="Please Input Password"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始"
+        android:id="@+id/BT2"
+        android:layout_below="@+id/DiaBt"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="97dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始"
+        android:id="@+id/BT3"
+        android:layout_alignTop="@+id/BT2"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
