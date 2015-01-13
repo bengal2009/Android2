@@ -1,17 +1,85 @@
 package com.example.blin.myapplication;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+//http://www.oschina.net/question/54100_32486
 
 
 public class MainActivity extends ActionBarActivity {
+    private EditText InputStr;
+    protected void dialog() {
+     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+     builder.setMessage("确认退出吗？");
+     builder.setTitle("提示");
+     builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+       @Override
+             public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+           MainActivity.this.finish();
+               }
+             });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+               @Override
+               public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                   }
+            });
+          builder.create().show();
+         }
+    void DispToast(String s1){
+        Toast.makeText(getApplicationContext(), s1,
+                Toast.LENGTH_SHORT).show();
+
+
+    }
+    void InputDialog() {
+        InputStr = new EditText(this);
+        InputStr.setInputType(InputType.TYPE_DATETIME_VARIATION_TIME);
+        DialogInterface.OnClickListener t1 = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                DispToast(InputStr.getText().toString() );
+//                DispToast("1111");
+                dialog.dismiss();
+            }
+        };
+
+        new AlertDialog.Builder(this).setTitle("请输入").setIcon(
+                 android.R.drawable.ic_dialog_info).setView(
+                InputStr).setPositiveButton("确定",t1)
+                 .setNegativeButton("取消", null).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button buttonClick = (Button)findViewById(R.id.DiaBt);
+        Button InputClick = (Button)findViewById(R.id.btInput);
+        buttonClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog();
+            }
+
+        });
+        InputClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InputDialog();
+            }
+
+        });
+
     }
 
 
