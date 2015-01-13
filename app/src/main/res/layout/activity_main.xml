@@ -27,4 +27,14 @@
         android:layout_alignTop="@+id/DiaBt"
         android:layout_centerHorizontal="true" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_below="@+id/textView"
+        android:hint="Please Input Password"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

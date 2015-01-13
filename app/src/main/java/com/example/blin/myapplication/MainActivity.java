@@ -44,7 +44,8 @@ public class MainActivity extends ActionBarActivity {
     }
     void InputDialog() {
         InputStr = new EditText(this);
-        InputStr.setInputType(InputType.TYPE_DATETIME_VARIATION_TIME);
+        //InputStr.setInputType(InputType.TYPE_DATETIME_VARIATION_TIME);
+        InputStr.setRawInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD );
         DialogInterface.OnClickListener t1 = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 DispToast(InputStr.getText().toString() );
