@@ -4,11 +4,16 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+//http://windrealm.org/tutorials/android/android-listview.php
 
 
 public class HelloListView extends Activity {
@@ -24,7 +29,17 @@ public class HelloListView extends Activity {
 
         // Find the ListView resource.
         mainListView = (ListView) findViewById( R.id.TestList);
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            public void onItemClick(AdapterView<?> arg0,
+                                    View arg1, int position, long arg3)
+            {
+                System.out.println("LIST ITEM POSITION "+position);
+//                Toast.makeText(mainListView, "你单击了" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Click! "+position,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
         // Create and populate a List of planet names.
         String[] planets = new String[] { "Mercury", "Venus", "Earth", "Mars",
                 "Jupiter", "Saturn", "Uranus", "Neptune"};
@@ -48,7 +63,9 @@ public class HelloListView extends Activity {
 
     }
 
-
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Toast.makeText(this, "你单击了" , Toast.LENGTH_SHORT).show();
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
