@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 //http://www.oschina.net/question/54100_32486
-
+//http://blog.csdn.net/xiao__gui/article/details/11392987
 //http://www.cnblogs.com/feisky/archive/2010/01/16/1649081.html
 public class MainActivity extends ActionBarActivity {
     private EditText InputStr;
@@ -110,7 +110,19 @@ public class MainActivity extends ActionBarActivity {
         });
 
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+            if(resultCode==RESULT_CANCELED)
+                setTitle("cancle");
+            else if (resultCode==RESULT_OK) {
+                String temp=null;
+                Bundle bundle=data.getExtras();
+                if(bundle!=null)   temp=bundle.getString("name");
+                setTitle(temp);
+            }
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
