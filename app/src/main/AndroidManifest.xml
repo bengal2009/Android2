@@ -21,6 +21,10 @@
             android:name=".HelloListView"
             android:label="@string/title_activity_hello_list_view" >
         </activity>
+        <activity
+            android:name=".ImgView"
+            android:label="@string/title_activity_img_view" >
+        </activity>
     </application>
 
 </manifest>
