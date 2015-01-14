@@ -43,6 +43,10 @@
             android:name=".NotifySample"
             android:label="@string/title_activity_notify_sample" >
         </activity>
+        <activity
+            android:name=".ListViewChk"
+            android:label="@string/title_activity_list_view_chk" >
+        </activity>
     </application>
 
 </manifest>
