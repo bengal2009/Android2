@@ -7,5 +7,6 @@
     <string name="title_activity_hello_list_view">HelloListView</string>
     <string name="title_activity_img_view">ImgView</string>
     <string name="title_activity_pass_info">PassInfo</string>
+    <string name="title_activity_intent_test">IntentTest</string>
 
 </resources>

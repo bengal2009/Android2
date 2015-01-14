@@ -29,6 +29,10 @@
             android:name=".PassInfo"
             android:label="@string/title_activity_pass_info" >
         </activity>
+        <activity
+            android:name=".IntentTest"
+            android:label="@string/title_activity_intent_test" >
+        </activity>
     </application>
 
 </manifest>
