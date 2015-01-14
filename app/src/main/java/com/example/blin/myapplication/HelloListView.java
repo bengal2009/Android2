@@ -2,6 +2,7 @@ package com.example.blin.myapplication;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,8 +61,28 @@ public class HelloListView extends Activity {
 
         // Set the ArrayAdapter as the ListView's adapter.
         mainListView.setAdapter( listAdapter );
-
+        registerForContextMenu(mainListView );
     }
+//ContextMenu Test
+    public void onCreateContextMenu(ContextMenu menu, View v,ContextMenu.ContextMenuInfo menuInfo) {
+         super.onCreateContextMenu(menu, v, menuInfo);
+         menu.add(0, 1, 0, "Edit");
+         menu.add(0, 2, 0,  "Delete");
+       }
+
+           public boolean onContextItemSelected(MenuItem item) {
+         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+         switch (item.getItemId()) {
+             case 1:
+//           editNote(info.id);
+           return true;
+             case 2:
+//               deleteNote(info.id);
+               return true;
+             default:
+             return super.onContextItemSelected(item);
+             }
+      }
 
     protected void onListItemClick(ListView l, View v, int position, long id) {
         Toast.makeText(this, "你单击了" , Toast.LENGTH_SHORT).show();
