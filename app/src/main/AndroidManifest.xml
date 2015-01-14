@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.blin.myapplication" >
 
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
     <!-- android:screenOrientation="portrait" -->
     <application
         android:allowBackup="true"
@@ -32,6 +34,14 @@
         <activity
             android:name=".IntentTest"
             android:label="@string/title_activity_intent_test" >
+        </activity>
+        <activity
+            android:name=".SMSMGR"
+            android:label="@string/title_activity_smsmgr" >
+        </activity>
+        <activity
+            android:name=".NotifySample"
+            android:label="@string/title_activity_notify_sample" >
         </activity>
     </application>
 

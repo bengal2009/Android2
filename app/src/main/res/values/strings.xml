@@ -8,5 +8,9 @@
     <string name="title_activity_img_view">ImgView</string>
     <string name="title_activity_pass_info">PassInfo</string>
     <string name="title_activity_intent_test">IntentTest</string>
+    <string name="title_activity_smsmgr">SMSMGR</string>
+    <string name="hello">111111111</string>
+    <string name="Send">Send</string>
+    <string name="title_activity_notify_sample">NotifySample</string>
 
 </resources>
