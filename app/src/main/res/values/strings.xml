@@ -13,5 +13,7 @@
     <string name="Send">Send</string>
     <string name="title_activity_notify_sample">NotifySample</string>
     <string name="title_activity_list_view_chk">ListViewChk</string>
+    <string name="info_times_hour" />
+    <string name="info_times_minute" />
 
 </resources>
