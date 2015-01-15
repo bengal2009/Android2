@@ -47,6 +47,14 @@
             android:name=".ListViewChk"
             android:label="@string/title_activity_list_view_chk" >
         </activity>
+        <activity
+            android:name=".WelComeActivity"
+            android:label="@string/title_activity_wel_come" >
+        </activity>
+        <activity
+            android:name=".ListViewDemo"
+            android:label="@string/title_activity_list_view_demo" >
+        </activity>
     </application>
 
 </manifest>
