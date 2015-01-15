@@ -55,6 +55,18 @@
             android:name=".ListViewDemo"
             android:label="@string/title_activity_list_view_demo" >
         </activity>
+        <activity
+            android:name=".lstview"
+            android:label="@string/title_activity_lstview" >
+        </activity>
+        <activity
+            android:name=".GrdvwTest"
+            android:label="@string/title_activity_lstview" >
+        </activity>
+        <activity
+            android:name=".TabAct"
+            android:label="@string/title_activity_tab" >
+        </activity>
     </application>
 
 </manifest>
