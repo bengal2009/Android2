@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//http://windrealm.org/tutorials/android/listview-with-checkboxes-without-listactivity.php
+
 public class ListViewChk extends Activity {
     private ListView mainListView ;
     private Planet[] planets ;

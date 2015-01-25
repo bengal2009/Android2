@@ -67,6 +67,14 @@
             android:name=".TabAct"
             android:label="@string/title_activity_tab" >
         </activity>
+        <activity
+            android:name=".ButtonMulti"
+            android:label="@string/title_activity_button_multi" >
+        </activity>
+        <activity
+            android:name=".MultiBut"
+            android:label="@string/title_activity_multi_but" >
+        </activity>
     </application>
 
 </manifest>

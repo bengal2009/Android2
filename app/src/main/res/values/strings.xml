@@ -19,5 +19,7 @@
     <string name="title_activity_list_view_demo">ListViewDemo</string>
     <string name="title_activity_lstview">lstview</string>
     <string name="title_activity_tab">TabAct</string>
+    <string name="title_activity_button_multi">ButtonMulti</string>
+    <string name="title_activity_multi_but">MultiBut</string>
 
 </resources>

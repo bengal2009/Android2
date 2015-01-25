@@ -14,5 +14,5 @@
         style="@style/AppTheme"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/images" />
+        android:src="@drawable/image" />
 </RelativeLayout>
