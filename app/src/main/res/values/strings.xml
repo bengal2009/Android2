@@ -21,5 +21,7 @@
     <string name="title_activity_tab">TabAct</string>
     <string name="title_activity_button_multi">ButtonMulti</string>
     <string name="title_activity_multi_but">MultiBut</string>
+    <string name="title_activity_webvw">Webvw</string>
+    <string name="title_activity_webvw2">Webvw2</string>
 
 </resources>
