@@ -4,22 +4,20 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
-import java.util.logging.Handler;
+import android.widget.Toast;
 
 
 public class Webvw2 extends ActionBarActivity {
-    WebView wv;
-   	ProgressDialog pd;
-    Handler handler;
+    private WebView webView;
+
+    private AlertDialog alertDialog;
+    private ProgressDialog progressBar;
 
 
     @Override
@@ -27,27 +25,9 @@ public class Webvw2 extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webvw2);
 
+        //加载WebView
+        initWebView();
 
-        init();//执行初始化函数
-      loadurl(wv,"http://www.pocketdigi.com");
-      handler=new Handler(){
-        	public void handleMessage(Message msg)
-         {//定义一个Handler，用于处理下载线程与UI间通讯
-        	      if (!Thread.currentThread().isInterrupted())
-          {
-            switch (msg.what)
-            {
-    	        case 0:
-        	        	pd.show();//显示进度对话框
-        	        	break;
-    	        case 1:
-        	        	pd.hide();//隐藏进度对话框，不可使用dismiss()、cancel(),否则再次调用show()时，显示的对话框小圆圈不会动。
-        	        	break;
-    	        }
-    	      }
-        	      super.handleMessage(msg);
-        	    }
-        };
 
     }
 
@@ -74,67 +54,64 @@ public class Webvw2 extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void init(){//初始化
-      	wv=(WebView)findViewById(R.id.wv);
-          wv.getSettings().setJavaScriptEnabled(true);//可用JS
-          wv.setScrollBarStyle(0);//滚动条风格，为0就是不给滚动条留空间，滚动条覆盖在网页上
-          wv.setWebViewClient(new WebViewClient(){
-               public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
-                   	loadurl(view,url);//载入网页
-                       return true;
-                   }//重写点击动作,用webview载入
-
-                      });
-       wv.setWebChromeClient(new WebChromeClient(){
-           	public void onProgressChanged(WebView view,int progress){//载入进度改变而触发
-              	if(progress==100){
-                 		handler.sendEmptyMessage(1);//如果全部载入,隐藏进度对话框
-                 	}
-        super.onProgressChanged(view, progress);
-                }
-        });
-
-        	pd=new ProgressDialog(Webvw2.this);
-            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            pd.setMessage("数据载入中，请稍候！");
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()){
+            webView.goBack();
+            return true;
         }
-     public boolean onKeyDown(int keyCode, KeyEvent event) {//捕捉返回键
-         if ((keyCode == KeyEvent.KEYCODE_BACK) && wv.canGoBack()) {
-                 wv.goBack();
-                 return true;
-             }else if(keyCode == KeyEvent.KEYCODE_BACK){
-             	ConfirmExit();//按了返回键，但已经不能返回，则执行退出确认
-             	return true;
-             }
-              return super.onKeyDown(keyCode, event);
-          }
-     public void ConfirmExit(){//退出确认
-         	AlertDialog.Builder ad=new AlertDialog.Builder(Webvw2.this);
-         	ad.setTitle("退出");
-         	ad.setMessage("是否退出软件?");
-         	ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按钮
-           	@Override
-           	public void onClick(DialogInterface dialog, int i) {
-           			// TODO Auto-generated method stub
-                Webvw2.this.finish();//关闭activity
+        return super.onKeyDown(keyCode, event);
+    }
 
-           		}
-     		});
-     	ad.setNegativeButton("否",new DialogInterface.OnClickListener() {
-     			@Override
-     			public void onClick(DialogInterface dialog, int i) {
-    		//不退出不用执行任何操作
-    	}
-     		});
-      	ad.show();//显示对话框
-      }
-     public void loadurl(final WebView view,final String url){
-       	new Thread(){
-             	public void run(){
-     	handler.sendEmptyMessage(0);
-     	view.loadUrl(url);//载入网页
-             	}
-         }.start();
-         }
+    class MyWebViewClient extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            if(progressBar.isShowing()){
+                progressBar.dismiss();
+            }
+        }
+
+        @Override
+        public void onReceivedError(WebView view, int errorCode,
+                                    String description, String failingUrl) {
+            Toast.makeText( Webvw2.this, "网页加载出错！", Toast.LENGTH_LONG);
+
+            alertDialog.setTitle("ERROR");
+            alertDialog.setMessage(description);
+            alertDialog.setButton("OK", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // TODO Auto-generated method stub
+                }
+            });
+            alertDialog.show();
+        }
+
+
+
+    }
+
+    protected void initWebView(){
+        //设计进度条
+        progressBar = ProgressDialog.show( Webvw2.this, null, "正在进入网页，请稍后…");
+        //获得WebView组件
+        webView = (WebView) this.findViewById(R.id.webview);
+
+        webView.getSettings().setJavaScriptEnabled(true);
+
+        webView.loadUrl("http://www.baidu.com");
+
+        alertDialog = new AlertDialog.Builder(this).create();
+
+        //设置视图客户端
+        webView.setWebViewClient(new MyWebViewClient());
+    }
 
 }
